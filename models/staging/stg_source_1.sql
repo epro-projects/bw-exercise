@@ -12,7 +12,7 @@ WITH raw AS (
     TRIM(Phone) AS phone,
     TRIM("Primary Contact Name") AS contact_name,
     TRIM("Primary Contact Role") AS contact_role
-  FROM {{ source('raw_files', 'source_1') }}
+  FROM {{ ref('source_1') }}
 )
 
 SELECT
