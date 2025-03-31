@@ -1,0 +1,27 @@
+name: 'bw-exercise'
+version: '1.0.0'
+config-version: 2
+
+profile: 'dbt_eprovencio'
+
+source-paths: ['models']
+analysis-paths: ['analysis']
+test-paths: ['tests']
+macro-paths: ['macros']
+
+target-path: 'target'
+clean-targets:
+  - 'target'
+  - 'dbt_modules'
+
+models:
+  bw-exercise:
+    staging:
+      +schema: stg
+      +materialized: view  # or table
+    intermediate:
+      +schema: intermediate
+      +materialized: view
+    marts:
+      +schema: marts
+      +materialized: view

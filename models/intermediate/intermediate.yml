@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: int_all_leads
+    description: >-
+      Combines all staging sources (Salesforce, Source 1, Source 2, Source 3).
+      Deduplicates on phone/address. 
+      Intermediate model before final mart.
+    tests:
+      - unique:
+          column_name: phone
+        severity: warn
+      - not_null:
+          column_name: phone
+        severity: warn
+    columns:
+      - name: lead_id
+        description: "Salesforce lead id if present"
+      - name: phone
+        description: "Primary phone used for deduplication"
+      - name: email
+        description: "Email address if available"
+      - name: status
+        description: "Lead status from Salesforce, or license status from other sources"
+      - name: source_name
+        description: "Which source this record came from"
