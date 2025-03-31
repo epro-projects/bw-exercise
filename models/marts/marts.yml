@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: dim_leads
+    description: "Final dimension table with one row per unique lead or child care provider"
+    tests:
+      - unique:
+          column_name: lead_key  # or phone if that is unique
+    columns:
+      - name: lead_key
+        description: "Surrogate key, either the SFDC ID or fallback phone+postal"
+      - name: lead_id
+        description: "Salesforce lead id (if exists)"
+      - name: phone
+        description: "Normalized phone number"
+      - name: email
+        description: "Email address from any source"
+      - name: address
+        description: "Street address from any source"
+      - name: city
+        description: "City"
+      - name: state
+        description: "State"
+      - name: postal_code
+        description: "Postal code"
+      - name: status
+        description: "Lead status or license status"
+      - name: source_name
+        description: "Which source contributed final record"
+      - name: created_date
+        description: "Salesforce lead created date if known"
