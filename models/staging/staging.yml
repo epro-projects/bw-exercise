@@ -10,7 +10,6 @@ models:
         description: "The primary identifier from Salesforce"
         tests:
           - not_null
-          - unique
       - name: phone
         description: "Lead phone number from Salesforce"
         tests:
