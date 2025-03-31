@@ -14,7 +14,7 @@ WITH raw AS (
     CAST(Capacity AS INT) AS capacity,
     TRIM("Email Address") AS email,
     TRIM("Facility ID") AS facility_id
-  FROM {{ source('raw_files','source_3') }}
+  FROM {{ ref('source_3') }}
 )
 
 SELECT

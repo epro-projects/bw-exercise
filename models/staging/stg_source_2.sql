@@ -13,7 +13,7 @@ WITH raw AS (
     TRIM("Subsidy Contract Number") AS subsidy_contract_number,
     CAST("Total Cap" AS INT) AS capacity,
     ...
-  FROM {{ source('raw_files','source_2') }}
+  FROM {{ ref('source_2') }}
 )
 
 SELECT

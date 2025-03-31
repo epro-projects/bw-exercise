@@ -28,7 +28,7 @@ WITH raw AS (
     capacity_c,
     lead_source_last_updated_c,
     brightwheel_school_uuid_c
-  FROM {{ source('raw_files','salesforce_leads') }} 
+  FROM {{ ref('salesforce_leads') }} 
 )
 
 SELECT
