@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: stg_salesforce_leads
+    description: >-
+      Staging model for daily Salesforce leads data. 
+      Renames/casts columns for consistent usage downstream.
+    columns:
+      - name: lead_id
+        description: "The primary identifier from Salesforce"
+        tests:
+          - not_null
+          - unique
+      - name: phone
+        description: "Lead phone number from Salesforce"
+        tests:
+          - relationships:
+              to: stg_salesforce_leads.lead_id
+              field: lead_id
+
+  - name: stg_source_1
+    description: "Raw staging for monthly file Source 1: credential & license info"
+    columns:
+      - name: facility_name
+        description: "Name from Source 1"
+      - name: phone
+        description: "Phone number from Source 1"
+        tests:
+          - not_null  # if phone is always expected
+
+  - name: stg_source_2
+    description: "Raw staging for monthly file Source 2: child care leads in OK"
+    columns:
+      - name: company_name
+        description: "Company or facility name"
+      - name: phone
+        description: "Phone number from Source 2"
+
+  - name: stg_source_3
+    description: "Raw staging for monthly file Source 3: child care leads in TX"
+    columns:
+      - name: operation_name
+        description: "Operation name from Source 3"
+      - name: phone
+        description: "Phone number from Source 3"
